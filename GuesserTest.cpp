@@ -155,3 +155,11 @@ TEST(GuesserTest, distance_over_2_Secret_Seaaat_locked)
   object.match("Seaaat");
   ASSERT_EQ(false, object.match("Secret"));
 }
+
+TEST(GuesserTest, guess_wrong_then_right_reset_remaining)
+{
+  Guesser object("Secret");
+  object.match("Secret2");
+  object.match("Secret");
+  ASSERT_EQ(3, object.remaining());
+}
